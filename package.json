@@ -3,14 +3,23 @@
   "version": "1.0.0",
   "description": "e-commerce",
   "main": "server.js",
+  "type": "module",
   "dependencies": {
-    "express": "^4.17.1"
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.10.15"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "concurrently": "^5.3.0",
+    "nodemon": "^2.0.6"
+  },
   "scripts": {
     "start": "node backend/server",
+    "server": "nodemon backend/server",
+    "client": "npm start --prefix frontend",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Matheus Piffer",
+  "axuthor": "Matheus Piffer",
   "license": "ISC"
 }
