@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Home from "./views/Home/Home";
 import Product from "./views/Product/Product";
+import Cart from "./views/Cart/Cart";
 function App() {
   return (
     <Router>
@@ -13,6 +14,7 @@ function App() {
         <Container>
           <Route path="/" component={Home} exact />
           <Route path="/product/:id" component={Product} exact />
+          <Route path="/cart/:id?" component={Cart} exact />
         </Container>
       </main>
       <Footer></Footer>
