@@ -11,7 +11,7 @@ import {
   Card,
 } from "react-bootstrap";
 import Message from "../../components/Message";
-import { addToCart } from "../../actions/cartActions";
+import { addToCart, removeFromCart } from "../../actions/cartActions";
 
 const Cart = ({ match, location, history }) => {
   const productId = match.params.id;
@@ -19,19 +19,19 @@ const Cart = ({ match, location, history }) => {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
-  console.log(cartItems);
   useEffect(() => {
     dispatch(addToCart(productId, qty));
   }, [dispatch, productId, qty]);
 
   const removeFromCartHandler = (id) => {
-    console.log(id);
+    dispatch(removeFromCart(id))
   };
 
   const checkoutHandler = () => {
-    history.push("/login?redirect=shipping")
-  }
+    history.push("/login?redirect=shipping");
+  };
   return (
+
     <Row>
       <Col md={8}>
         <h1>Shopping cart</h1>
@@ -88,16 +88,24 @@ const Cart = ({ match, location, history }) => {
           <ListGroup>
             <ListGroup.Item>
               <h2>
-                Subtotal ({cartItems.reduce((acc, item) => acc + item.qty, 0)})
+                Subtotal ({cartItems.reduce((acc, item) => Number(acc)+ Number(item.qty), 0)})
                 items
               </h2>
-              ${cartItems.reduce((acc, item) => acc + item.qty * item.price, 0).toFixed(2)}
+              $
+              {cartItems
+                .reduce((acc, item) => acc + item.qty * item.price, 0)
+                .toFixed(2)}
             </ListGroup.Item>
-            <ListGroup.item>
-              <Button type="button" className="btn-block" disabled={cartItems.length === 0} onClick={()=>checkoutHandler()}>
+            <ListGroup.Item>
+              <Button
+                type="button"
+                className="btn-block"
+                disabled={cartItems.length === 0}
+                onClick={() => checkoutHandler()}
+              >
                 Proceed to checkout
               </Button>
-            </ListGroup.item>
+            </ListGroup.Item>
           </ListGroup>
         </Card>
       </Col>
