@@ -8,6 +8,11 @@ import Product from "./views/Product/Product";
 import Cart from "./views/Cart/Cart";
 import Login from "./views/Login/Login";
 import Register from "./views/Register/Register";
+import Profile from "./views/Profile/Profile";
+import Shipping from "./views/Shipping/Shipping";
+import Payment from "./views/Payment/Payment";
+import PlaceOrder from "./views/PlaceOrder/PlaceOrder";
+
 function App() {
   return (
     <Router>
@@ -16,6 +21,10 @@ function App() {
         <Container>
           <Route path="/login" component={Login} exact />
           <Route path="/register" component={Register} exact />
+          <Route path="/profile" component={Profile} exact />
+          <Route path="/shipping" component={Shipping} exact />
+          <Route path="/payment" component={Payment} exact />
+          <Route path="/place-order" component={PlaceOrder} exact />
           <Route path="/product/:id" component={Product} exact />
           <Route path="/cart/:id?" component={Cart} exact />
           <Route path="/" component={Home} exact />
